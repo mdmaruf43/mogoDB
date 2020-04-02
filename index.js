@@ -7,22 +7,45 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const uri = "mongodb+srv://dbUser:m4mm8d08TTheXDmL@cluster0-txf1p.mongodb.net/test?retryWrites=true&w=majority";
+//const uri = "mongodb+srv://dbUser:1Wvh7S3GylUvXRrf@cluster0-qlxdc.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://userDB:NbKYeAb64iLi7kRL@cluster0-txf1p.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-app.post('/addProduct', (req, res) => {
-    const product = req.body;
-    console.log(product);
-    client.connect(err => {
-        const collection = client.db("onlineStore").collection("products");
-        // perform actions on the collection object
-        collection.insertOne(product, (err, res) => {
-            console.log("Successfully Inserted", res);
-            //res.send(product);
-        });
-        client.close();
-    });
-})
+// app.post('/addProduct', (req, res) => {
+//     const product = req.body;
+//     console.log(product);
+//     client.connect(err => {
+//         const collection = client.db("onlineStore").collection("products");
+//         // perform actions on the collection object
+//         collection.insertOne(product, (err, res) => {
+//             console.log("Successfully Inserted", res);
+//             console.log(err);
+//             //res.send(product);
+//         });
+//         client.close();
+//     });
+// })
+
+// client.connect(err => {
+//     const collection = client.db("onlineStore").collection("product");
+//     collection.insertOne({
+//         name: "Dell",
+//         price: 30000,
+//         stock: 34
+//     }, (err, res) => {
+//         console.log("Successfully Inserted")
+//     })
+//     client.close();
+// });
+
+//NbKYeAb64iLi7kRL
+
+// client.connect(err => {
+//     const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//     client.close();
+// });
+
 
 // const ecomerceDBUser = "e-comerceDBUser";
 // const pass = "VoGpnEu1fg030W3P";
@@ -32,8 +55,8 @@ app.post('/addProduct', (req, res) => {
 // const uri = "mongodb+srv://dbUser:m4mm8d08TTheXDmL@cluster0-txf1p.mongodb.net/test?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true });
 
-// const users = ["Rajib", 'Maruf', 'Toma', 'Maya', 'Bushra'];
-// Database connection 
+const users = ["Rajib", 'Maruf', 'Toma', 'Maya', 'Bushra'];
+//Database connection 
 
 // const MongoClient = require('mongodb').MongoClient;
 // const uri = "mongodb+srv://dbUser:m4mm8d08TTheXDmL@cluster0-qlxdc.mongodb.net/test?retryWrites=true&w=majority";
@@ -71,19 +94,20 @@ app.get('/users/:id', (req, res) => {
     res.send({id, name});
 });
 
-// app.post('/addProduct', (req, res) => {
-//     const product = req.body;
-//     console.log(product);
-//     client.connect(err => {
-//         const collection = client.db("onlineStore").collection("products");
-//         // perform actions on the collection object
-//         collection.insertOne(product, (err, res) => {
-//             console.log("Successfully Inserted", res);
-//             //res.send(product);
-//         });
-//         client.close();
-//     });
-// })
+app.post('/addProduct', (req, res) => {
+    const product = req.body;
+    console.log(product);
+    client.connect(err => {
+        const collection = client.db("onlineStore").collection("products");
+        // perform actions on the collection object
+        collection.insertOne(product, (err, result) => {
+            console.log("Successfully Inserted", result);
+            //res.send(product);
+        });
+        console.log(err);
+        client.close();
+    });
+})
 
 
 
